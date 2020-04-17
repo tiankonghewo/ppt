@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: xgboostppt.aux
+The style file: alpha.bst
+Database file #1: xgb.bib
+Warning--to sort, need author, editor, or key in xgbbook
+Warning--empty author and editor in xgbbook
+You've used 2 entries,
+            2543 wiz_defined-function locations,
+            568 strings with 4725 characters,
+and the built_in function-call counts, 601 in all, are:
+= -- 51
+> -- 20
+< -- 0
++ -- 6
+- -- 6
+* -- 38
+:= -- 97
+add.period$ -- 5
+call.type$ -- 2
+change.case$ -- 9
+chr.to.int$ -- 2
+cite$ -- 5
+duplicate$ -- 33
+empty$ -- 61
+format.name$ -- 7
+if$ -- 126
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 2
+newline$ -- 12
+num.names$ -- 3
+pop$ -- 16
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 24
+stack$ -- 0
+substring$ -- 15
+swap$ -- 3
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 12
+warning$ -- 2
+while$ -- 3
+width$ -- 3
+write$ -- 24
+(There were 2 warnings)

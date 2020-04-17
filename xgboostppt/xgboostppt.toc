@@ -1,0 +1,14 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{XGBoost Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Decision Tree Algorithm}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{ID3}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{C4.5}{7}{0}{2}
+\beamer@subsectionintoc {2}{3}{CART}{8}{0}{2}
+\beamer@sectionintoc {3}{Gradient Boosting}{9}{0}{3}
+\beamer@subsectionintoc {3}{1}{Gradient Boosting}{10}{0}{3}
+\beamer@subsectionintoc {3}{2}{Gradient Boosting Boosting}{11}{0}{3}
+\beamer@sectionintoc {4}{Tree Boosting}{12}{0}{4}
+\beamer@subsectionintoc {4}{1}{Additive Training}{13}{0}{4}
+\beamer@subsectionintoc {4}{2}{Model Complexity}{14}{0}{4}
+\beamer@subsectionintoc {4}{3}{The Structure Score}{15}{0}{4}
+\beamer@subsectionintoc {4}{4}{Learn the tree structure}{16}{0}{4}

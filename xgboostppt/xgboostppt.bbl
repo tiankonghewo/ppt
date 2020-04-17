@@ -1,0 +1,13 @@
+\begin{thebibliography}{xgb01}
+
+\bibitem[CG16]{Chen2016XGBoost}
+Tianqi Chen and Carlos Guestrin.
+\newblock Xgboost: A scalable tree boosting system.
+\newblock In {\em Proceedings of the 22nd ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, 2016.
+
+\bibitem[xgb01]{xgbbook}
+{\em 深入理解XGBoost：高效机器学习算法与进阶}.
+\newblock 何龙, 2020-01-01.
+
+\end{thebibliography}

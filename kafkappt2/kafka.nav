@@ -4,93 +4,151 @@
 \headcommand {\beamer@framepages {2}{2}}
 \headcommand {\beamer@sectionpages {1}{2}}
 \headcommand {\beamer@subsectionpages {1}{2}}
-\headcommand {\sectionentry {1}{An Introduction to Kafka}{3}{An Introduction to Kafka}{0}}
+\headcommand {\sectionentry {1}{Introduction}{3}{Introduction}{0}}
 \headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
 \headcommand {\beamer@framepages {3}{3}}
 \headcommand {\slideentry {1}{0}{2}{4/4}{}{0}}
 \headcommand {\beamer@framepages {4}{4}}
-\headcommand {\beamer@sectionpages {3}{4}}
-\headcommand {\beamer@subsectionpages {3}{4}}
-\headcommand {\sectionentry {2}{Design}{5}{Design}{0}}
-\headcommand {\slideentry {2}{0}{1}{5/5}{}{0}}
+\headcommand {\slideentry {1}{0}{3}{5/5}{}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\beamer@subsectionpages {5}{5}}
-\headcommand {\beamer@subsectionentry {0}{2}{1}{6}{Persistence}}
-\headcommand {\slideentry {2}{1}{1}{6/6}{Persistence}{0}}
+\headcommand {\slideentry {1}{0}{4}{6/6}{}{0}}
 \headcommand {\beamer@framepages {6}{6}}
-\headcommand {\slideentry {2}{1}{2}{7/7}{Persistence}{0}}
+\headcommand {\slideentry {1}{0}{5}{7/7}{}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\slideentry {2}{1}{3}{8/8}{Persistence}{0}}
+\headcommand {\beamer@sectionpages {3}{7}}
+\headcommand {\beamer@subsectionpages {3}{7}}
+\headcommand {\sectionentry {2}{Design}{8}{Design}{0}}
+\headcommand {\slideentry {2}{0}{1}{8/8}{}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\slideentry {2}{1}{4}{9/9}{Persistence}{0}}
+\headcommand {\beamer@subsectionpages {8}{8}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{9}{Persistence}}
+\headcommand {\slideentry {2}{1}{1}{9/9}{Persistence}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {2}{1}{5}{10/10}{Persistence}{0}}
+\headcommand {\slideentry {2}{1}{2}{10/10}{Persistence}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\slideentry {2}{1}{6}{11/11}{Persistence}{0}}
+\headcommand {\slideentry {2}{1}{3}{11/11}{Persistence}{0}}
 \headcommand {\beamer@framepages {11}{11}}
-\headcommand {\slideentry {2}{1}{7}{12/12}{Persistence}{0}}
+\headcommand {\slideentry {2}{1}{4}{12/12}{Persistence}{0}}
 \headcommand {\beamer@framepages {12}{12}}
-\headcommand {\beamer@subsectionpages {6}{12}}
-\headcommand {\beamer@subsectionentry {0}{2}{2}{13}{Efficiency}}
-\headcommand {\slideentry {2}{2}{1}{13/13}{Efficiency}{0}}
+\headcommand {\slideentry {2}{1}{5}{13/13}{Persistence}{0}}
 \headcommand {\beamer@framepages {13}{13}}
-\headcommand {\slideentry {2}{2}{2}{14/14}{Efficiency}{0}}
+\headcommand {\slideentry {2}{1}{6}{14/14}{Persistence}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\slideentry {2}{2}{3}{15/15}{Efficiency}{0}}
+\headcommand {\slideentry {2}{1}{7}{15/15}{Persistence}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {2}{2}{4}{16/16}{Efficiency}{0}}
+\headcommand {\beamer@subsectionpages {9}{15}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{16}{Efficiency}}
+\headcommand {\slideentry {2}{2}{1}{16/16}{Efficiency}{0}}
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {2}{2}{5}{17/17}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{2}{17/17}{Efficiency}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\slideentry {2}{2}{6}{18/18}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{3}{18/18}{Efficiency}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\slideentry {2}{2}{7}{19/19}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{4}{19/19}{Efficiency}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {2}{2}{8}{20/20}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{5}{20/20}{Efficiency}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {2}{2}{9}{21/21}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{6}{21/21}{Efficiency}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {2}{2}{10}{22/22}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{7}{22/22}{Efficiency}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {2}{2}{11}{23/23}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{8}{23/23}{Efficiency}{0}}
 \headcommand {\beamer@framepages {23}{23}}
-\headcommand {\slideentry {2}{2}{12}{24/24}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{9}{24/24}{Efficiency}{0}}
 \headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {2}{2}{13}{25/25}{Efficiency}{0}}
+\headcommand {\slideentry {2}{2}{10}{25/25}{Efficiency}{0}}
 \headcommand {\beamer@framepages {25}{25}}
-\headcommand {\beamer@subsectionpages {13}{25}}
-\headcommand {\beamer@subsectionentry {0}{2}{3}{26}{The Producer}}
-\headcommand {\slideentry {2}{3}{1}{26/26}{The Producer}{0}}
+\headcommand {\slideentry {2}{2}{11}{26/26}{Efficiency}{0}}
 \headcommand {\beamer@framepages {26}{26}}
-\headcommand {\slideentry {2}{3}{2}{27/27}{The Producer}{0}}
+\headcommand {\slideentry {2}{2}{12}{27/27}{Efficiency}{0}}
 \headcommand {\beamer@framepages {27}{27}}
-\headcommand {\slideentry {2}{3}{3}{28/28}{The Producer}{0}}
+\headcommand {\beamer@subsectionpages {16}{27}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{28}{The Producer}}
+\headcommand {\slideentry {2}{3}{1}{28/28}{The Producer}{0}}
 \headcommand {\beamer@framepages {28}{28}}
-\headcommand {\slideentry {2}{3}{4}{29/29}{The Producer}{0}}
+\headcommand {\slideentry {2}{3}{2}{29/29}{The Producer}{0}}
 \headcommand {\beamer@framepages {29}{29}}
-\headcommand {\slideentry {2}{3}{5}{30/30}{The Producer}{0}}
+\headcommand {\slideentry {2}{3}{3}{30/30}{The Producer}{0}}
 \headcommand {\beamer@framepages {30}{30}}
-\headcommand {\slideentry {2}{3}{6}{31/31}{The Producer}{0}}
+\headcommand {\slideentry {2}{3}{4}{31/31}{The Producer}{0}}
 \headcommand {\beamer@framepages {31}{31}}
-\headcommand {\slideentry {2}{3}{7}{32/32}{The Producer}{0}}
+\headcommand {\slideentry {2}{3}{5}{32/32}{The Producer}{0}}
 \headcommand {\beamer@framepages {32}{32}}
-\headcommand {\slideentry {2}{3}{8}{33/33}{The Producer}{0}}
+\headcommand {\beamer@subsectionpages {28}{32}}
+\headcommand {\beamer@subsectionentry {0}{2}{4}{33}{The Consumer}}
+\headcommand {\slideentry {2}{4}{1}{33/33}{The Consumer}{0}}
 \headcommand {\beamer@framepages {33}{33}}
-\headcommand {\beamer@sectionpages {5}{33}}
-\headcommand {\beamer@subsectionpages {26}{33}}
-\headcommand {\sectionentry {3}{Implementation}{34}{Implementation}{0}}
-\headcommand {\slideentry {3}{0}{1}{34/34}{}{0}}
+\headcommand {\slideentry {2}{4}{2}{34/34}{The Consumer}{0}}
 \headcommand {\beamer@framepages {34}{34}}
-\headcommand {\slideentry {3}{0}{2}{35/35}{}{0}}
+\headcommand {\slideentry {2}{4}{3}{35/35}{The Consumer}{0}}
 \headcommand {\beamer@framepages {35}{35}}
-\headcommand {\slideentry {3}{0}{3}{36/36}{}{0}}
+\headcommand {\slideentry {2}{4}{4}{36/36}{The Consumer}{0}}
 \headcommand {\beamer@framepages {36}{36}}
-\headcommand {\slideentry {3}{0}{4}{37/37}{}{0}}
+\headcommand {\slideentry {2}{4}{5}{37/37}{The Consumer}{0}}
 \headcommand {\beamer@framepages {37}{37}}
-\headcommand {\slideentry {3}{0}{5}{38/38}{}{0}}
+\headcommand {\beamer@subsectionpages {33}{37}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{38}{Message Delivery Semantics}}
+\headcommand {\slideentry {2}{5}{1}{38/38}{Message Delivery Semantics}{0}}
 \headcommand {\beamer@framepages {38}{38}}
-\headcommand {\beamer@partpages {1}{38}}
-\headcommand {\beamer@subsectionpages {34}{38}}
-\headcommand {\beamer@sectionpages {34}{38}}
-\headcommand {\beamer@documentpages {38}}
-\headcommand {\gdef \inserttotalframenumber {38}}
+\headcommand {\slideentry {2}{5}{2}{39/39}{Message Delivery Semantics}{0}}
+\headcommand {\beamer@framepages {39}{39}}
+\headcommand {\slideentry {2}{5}{3}{40/40}{Message Delivery Semantics}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\beamer@subsectionpages {38}{40}}
+\headcommand {\beamer@subsectionentry {0}{2}{6}{41}{Replication}}
+\headcommand {\slideentry {2}{6}{1}{41/41}{Replication}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\slideentry {2}{6}{2}{42/42}{Replication}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {2}{6}{3}{43/43}{Replication}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {2}{6}{4}{44/44}{Replication}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\slideentry {2}{6}{5}{45/45}{Replication}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\beamer@sectionpages {8}{45}}
+\headcommand {\beamer@subsectionpages {41}{45}}
+\headcommand {\sectionentry {3}{Implementation}{46}{Implementation}{0}}
+\headcommand {\slideentry {3}{0}{1}{46/46}{}{0}}
+\headcommand {\beamer@framepages {46}{46}}
+\headcommand {\beamer@subsectionpages {46}{46}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{47}{Network Layer}}
+\headcommand {\slideentry {3}{1}{1}{47/47}{Network Layer}{0}}
+\headcommand {\beamer@framepages {47}{47}}
+\headcommand {\beamer@subsectionpages {47}{47}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{48}{Messages}}
+\headcommand {\slideentry {3}{2}{1}{48/48}{Messages}{0}}
+\headcommand {\beamer@framepages {48}{48}}
+\headcommand {\slideentry {3}{2}{2}{49/49}{Messages}{0}}
+\headcommand {\beamer@framepages {49}{49}}
+\headcommand {\slideentry {3}{2}{3}{50/50}{Messages}{0}}
+\headcommand {\beamer@framepages {50}{50}}
+\headcommand {\beamer@subsectionpages {48}{50}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{51}{Log}}
+\headcommand {\slideentry {3}{3}{1}{51/51}{Log}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\slideentry {3}{3}{2}{52/52}{Log}{0}}
+\headcommand {\beamer@framepages {52}{52}}
+\headcommand {\slideentry {3}{3}{3}{53/53}{Log}{0}}
+\headcommand {\beamer@framepages {53}{53}}
+\headcommand {\slideentry {3}{3}{4}{54/54}{Log}{0}}
+\headcommand {\beamer@framepages {54}{54}}
+\headcommand {\slideentry {3}{3}{5}{55/55}{Log}{0}}
+\headcommand {\beamer@framepages {55}{55}}
+\headcommand {\beamer@subsectionpages {51}{55}}
+\headcommand {\beamer@subsectionentry {0}{3}{4}{56}{Consumer Offset Tracking}}
+\headcommand {\slideentry {3}{4}{1}{56/56}{Consumer Offset Tracking}{0}}
+\headcommand {\beamer@framepages {56}{56}}
+\headcommand {\slideentry {3}{4}{2}{57/57}{Consumer Offset Tracking}{0}}
+\headcommand {\beamer@framepages {57}{57}}
+\headcommand {\slideentry {3}{4}{3}{58/58}{Consumer Offset Tracking}{0}}
+\headcommand {\beamer@framepages {58}{58}}
+\headcommand {\slideentry {3}{4}{4}{59/59}{Consumer Offset Tracking}{0}}
+\headcommand {\beamer@framepages {59}{59}}
+\headcommand {\slideentry {3}{4}{5}{60/60}{Consumer Offset Tracking}{0}}
+\headcommand {\beamer@framepages {60}{60}}
+\headcommand {\beamer@partpages {1}{60}}
+\headcommand {\beamer@subsectionpages {56}{60}}
+\headcommand {\beamer@sectionpages {46}{60}}
+\headcommand {\beamer@documentpages {60}}
+\headcommand {\gdef \inserttotalframenumber {60}}

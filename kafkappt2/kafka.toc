@@ -1,7 +1,14 @@
 \babel@toc {english}{}
-\beamer@sectionintoc {1}{An Introduction to Kafka}{3}{0}{1}
-\beamer@sectionintoc {2}{Design}{5}{0}{2}
-\beamer@subsectionintoc {2}{1}{Persistence}{6}{0}{2}
-\beamer@subsectionintoc {2}{2}{Efficiency}{13}{0}{2}
-\beamer@subsectionintoc {2}{3}{The Producer}{26}{0}{2}
-\beamer@sectionintoc {3}{Implementation}{34}{0}{3}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Design}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Persistence}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{Efficiency}{16}{0}{2}
+\beamer@subsectionintoc {2}{3}{The Producer}{28}{0}{2}
+\beamer@subsectionintoc {2}{4}{The Consumer}{33}{0}{2}
+\beamer@subsectionintoc {2}{5}{Message Delivery Semantics}{38}{0}{2}
+\beamer@subsectionintoc {2}{6}{Replication}{41}{0}{2}
+\beamer@sectionintoc {3}{Implementation}{46}{0}{3}
+\beamer@subsectionintoc {3}{1}{Network Layer}{47}{0}{3}
+\beamer@subsectionintoc {3}{2}{Messages}{48}{0}{3}
+\beamer@subsectionintoc {3}{3}{Log}{51}{0}{3}
+\beamer@subsectionintoc {3}{4}{Consumer Offset Tracking}{56}{0}{3}

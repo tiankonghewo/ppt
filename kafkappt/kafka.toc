@@ -1,0 +1,17 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{初识Kafka}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{ 基本概念}{5}{0}{1}
+\beamer@sectionintoc {2}{生产者}{15}{0}{2}
+\beamer@subsectionintoc {2}{1}{原理分析}{16}{0}{2}
+\beamer@sectionintoc {3}{消费者}{22}{0}{3}
+\beamer@subsectionintoc {3}{1}{Kafka Consuming Model}{23}{0}{3}
+\beamer@sectionintoc {4}{主题与分区}{41}{0}{4}
+\beamer@subsectionintoc {4}{1}{分区管理}{42}{0}{4}
+\beamer@subsectionintoc {4}{2}{日志存储}{44}{0}{4}
+\beamer@subsectionintoc {4}{3}{Kafka为什么这么快}{49}{0}{4}
+\beamer@sectionintoc {5}{深入服务端}{56}{0}{5}
+\beamer@subsectionintoc {5}{1}{协议设计}{57}{0}{5}
+\beamer@sectionintoc {6}{深入客户端}{61}{0}{6}
+\beamer@subsectionintoc {6}{1}{深入客户端}{62}{0}{6}
+\beamer@sectionintoc {7}{可靠性探究}{63}{0}{7}
+\beamer@subsectionintoc {7}{1}{可靠性探究}{64}{0}{7}

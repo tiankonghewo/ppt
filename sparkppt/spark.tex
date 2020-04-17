@@ -4,7 +4,8 @@
 %*****************************************************************************************
 %  从这里开始到\begin{document}是导言区，称之为preamble
 \documentclass[UTF8]{beamer}
-\usepackage[UTF8]{ctex}                 %使用中文要添加，可解决中文文档输入
+\usepackage[fontset=mac]{ctex}
+%\usepackage[UTF8]{ctex}                 %使用中文要添加，可解决中文文档输入
 \usepackage{newtxtext,newtxmath}  %字重齐全的高质量数学字体
 \usepackage{mathrsfs}             %大写ABC的花体使用命令是\mathscr{}
 \usepackage{graphicx}             %添加图片
@@ -74,8 +75,7 @@
 \title{Spark 技术分享}  % 幻灯片封面
 \author{王社英}
 \institute{
-	金融科技部/纳米科技\\
-	wangsheying@wecash.net
+	北京回龙观
 }
 
 \date{\today}  

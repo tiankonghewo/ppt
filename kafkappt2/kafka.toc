@@ -1,0 +1,7 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{An Introduction to Kafka}{3}{0}{1}
+\beamer@sectionintoc {2}{Design}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Persistence}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{Efficiency}{13}{0}{2}
+\beamer@subsectionintoc {2}{3}{The Producer}{26}{0}{2}
+\beamer@sectionintoc {3}{Implementation}{34}{0}{3}

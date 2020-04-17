@@ -1,0 +1,13 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{Spark Introduction}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{A unified analytics engine}{4}{0}{1}
+\beamer@sectionintoc {2}{Spark Initialization}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{ApplicationMaster}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{SparkContext}{22}{0}{2}
+\beamer@sectionintoc {3}{Spark Scheduler}{37}{0}{3}
+\beamer@subsectionintoc {3}{1}{The high-level scheduling layer}{38}{0}{3}
+\beamer@subsectionintoc {3}{2}{The low-level scheduling layer}{65}{0}{3}
+\beamer@subsectionintoc {3}{3}{Shuffle}{67}{0}{3}
+\beamer@subsectionintoc {3}{4}{Back to the driver}{85}{0}{3}
+\beamer@subsectionintoc {3}{5}{Write to Storage System}{88}{0}{3}
+\beamer@subsectionintoc {3}{6}{View data in the console}{89}{0}{3}

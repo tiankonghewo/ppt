@@ -1,0 +1,580 @@
+%  !TeX spellcheck = en_GB
+%  WangSheying于2015/11/2整理，TJU北洋园校区
+%  TeXLive2015+TeXstudio个人推荐，可在线升级usepackage，比较方便
+%*****************************************************************************************
+%  从这里开始到\begin{document}是导言区，称之为preamble
+\documentclass[UTF8]{beamer}
+\usepackage[fontset=mac]{ctex}
+%\usepackage[UTF8]{ctex}                 %使用中文要添加，可解决中文文档输入
+\usepackage{newtxtext,newtxmath}  %字重齐全的高质量数学字体
+\usepackage{mathrsfs}             %大写ABC的花体使用命令是\mathscr{}
+\usepackage{graphicx}             %添加图片
+\usepackage{bm}                   %专门处理数学粗体的bm宏包,使用命令是\bm{}
+\usepackage{extarrows}            %延长符号，可在=，->等符号加多个字母
+%\usepackage{amstext}              %它定义命令 \text，可用于在数学公式中插入少量文本，并可调整上下标中文本字体的尺寸。
+\usepackage{amsthm}               %它定义了一个 proof 环境，用来排版定理和证明，能自动在最后添加证毕符号。它还提供一个命令：\newtheorem{定理环境名}{标题}[计数器名]，可自定义定理类 环境
+\usefonttheme{professionalfonts}  %这个更好看些，数学字体
+\usepackage{indentfirst}          %首行缩进
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{subfigure}
+\usepackage[english]{babel}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{tikz}
+\setlength{\parindent}{2em}      %首行缩进2字符
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{caption}[numbered]
+%******************************************************************************************
+%            以上是各种宏包
+%******************************************************************************************
+%下面是定理，定义，引言的声明，可自行添加
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defi}[thm]{Definition}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{claim}[thm]{Claim}
+
+\newenvironment{proofnoqed}{\begin{proof}<span style="background-color: rgb(255, 0, 0);">\renewcommand{\qedsymbol}{}  }{\end{proof} }
+%有的证明比较长，前面的应该没有证毕符号，只在最后一个用proof，其他应该用自定义的新环境proofnoqed
+
+
+
+%  三种颜色   red  purple   magenta
+
+
+
+
+
+%上面是定理，定义，引言的声明，可自行添加
+%******************************************************************************************
+%下面是beamer的主题设置，目录框架结构，其实就是标题，目录等在上下左右哪一个位置放置，以及目录怎么显示
+\usetheme{Singapore}            % 幻灯片模板选择singapore
+\usecolortheme{sidebartab}      % 幻灯片模板的色彩sidebartab
+
+\AtBeginSection[]{              % 幻灯片框架% 在每个Section前都会加入的Frame,
+	\begin{frame}[plain]
+		\frametitle{Outline}
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/show/shaded]
+	\end{frame} 
+}
+%  \tableofcontents[comma-separated option list]具体讲解见《The beamer class User Guide》,
+%  http://texdoc.net/texmf-dist/doc/latex/beamer/doc/beameruserguide.pdf     See in section 10.5 Adding a table of contents.
+%  section和subsection相互独立,显示效果互不相关,Allowed ⟨styles⟩ are show, shaded, and hide
+%  sectionstyle=⟨style for current section⟩/⟨style for other sections⟩
+%  subsectionstyle=⟨style for current subsection⟩/⟨style for other subsections in current section⟩/⟨style for subsections in other sections⟩
+%
+% 上面是beamer的主题设置，目录框架结构，其实就是标题，目录等在上下左右哪一个位置放置，以及目录怎么显示
+%*******************************************************************************************
+%       下面标题页的内容设置，根据实际情况修改即可
+\title{The Design and Implementation of Kafka}  % 幻灯片封面
+\author{Wang Sheying}
+\institute{HuiLongGuan of Beijing}
+\date{\today}  
+
+%\date{9月 23, 2019}%一般是\today
+%      上面标题页的内容设置根据实际情况修改即可
+%*******************************************************************************************
+%  \begin{document}以上是导言区，称之为preamble
+%*******************************************************************************************
+\begin{document}
+	\begin{frame}[plain]
+		%plain格式使得一帧的最上面是白色的，没有plain，会有色彩
+		\titlepage
+	\end{frame}
+	\begin{frame}[plain]               % 幻灯片目录
+		\frametitle{Outline}
+		\tableofcontents[sectionstyle=show/show,subsectionstyle=show/show/hide]
+	\end{frame}
+	%The beamer class这本小册子有目录格式的讲解，sectionstyle，subsectionstyle都有，P100页
+	%User Guide for version 3.36. 文档可在google搜索The beamer class，即可得到
+%  以上是标准的配置，还有最下面的一部分标准配置
+%********************************************************************************************
+%    一帧的具体格式样例参考
+%\section{节的名字}
+%\subsection{小节的名字}
+%\begin{frame}[plain,t]{节的名字} %也可以使用\frametitle{节的名字}效果一样
+%	\structure{小节的名字} \\  \vspace{2ex}
+%	节的名字正上方居中，小节的名字紧下方居左。
+%\end{frame}
+%*********************************************************************************************
+%                  下面就是正文，自己的内容
+%*********************************************************************************************
+
+\section{An Introduction to Kafka}
+\begin{frame}[plain,t]{Kafka简介} %也可以使用\frametitle{节的名字}效果一样
+	%\structure{} \\
+	  \vspace{2ex}
+
+	
+
+
+	
+\end{frame}
+
+\section{Design}
+\subsection{Persistence}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+    Kafka relies heavily on the filesystem for storing and caching messages. 
+    
+    \vspace{2ex}
+    As a result the performance of linear writes on a JBOD configuration with six 7200rpm SATA RAID-5 array is about 600MB/sec but the performance of random writes is only about 100k/sec—a difference of over 6000X. 
+    
+    \vspace{2ex}
+    To compensate for this performance divergence, modern operating systems have become increasingly aggressive in their use of main memory for disk caching.
+    
+    %
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+    A modern OS will happily divert all free memory to disk caching with little performance penalty when the memory is reclaimed.
+    
+    \vspace{2ex}
+    All disk reads and writes will go through this unified cache. 
+    
+    \vspace{2ex}
+    A modern operating system provides read-ahead and write-behind techniques that prefetch data in large block multiples and group smaller logical writes into large physical writes.
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+    Furthermore, kafka are building on top of the JVM, and anyone who has spent any time with Java memory usage knows two things:
+    \begin{itemize}
+        \item The memory overhead of objects is very high, often doubling the size of the data stored (or worse).
+        \item  Java garbage collection becomes increasingly fiddly and slow as the in-heap data increases.
+    \end{itemize}
+    
+    
+   
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+    As a result of these factors using the filesystem and relying on pagecache is superior to maintaining an in-memory cache or other structure
+    
+    \vspace{2ex}
+    Doing so will result in a cache of up to 28-30GB on a 32GB machine without GC penalties.
+    
+    \vspace{2ex}
+    Furthermore, this cache will stay warm even if the service is restarted, whereas the in-process cache will need to be rebuilt in memory
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+    This suggests a design which is very simple: rather than maintain as much as possible in-memory and flush it all out to the filesystem in a panic when we run out of space, we invert that. 
+    
+     \vspace{2ex}
+    All data is immediately written to a persistent log on the filesystem without necessarily flushing to disk.
+    
+     \vspace{2ex}
+     In effect this just means that it is transferred into the kernel's pagecache.
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+    The persistent data structure used in messaging systems are often a per-consumer queue with an associated BTree or other general-purpose random access data structures to maintain metadata about messages.
+    
+    \vspace{2ex}
+    They do come with a fairly high cost, though: Btree operations are O(log N). Normally O(log N) is considered essentially equivalent to constant time, but this is not true for disk operations. 
+    
+    \vspace{2ex}
+    Since storage systems mix very fast cached operations with very slow physical disk operations, the observed performance of tree structures is often superlinear as data increases with fixed cache.
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+    Intuitively a persistent queue could be built on simple reads and appends to files as is commonly the case with logging solutions. 
+    
+    \vspace{2ex}
+    This structure has the advantage that all operations are O(1) and reads do not block writes or each other. 
+    
+    \vspace{2ex}
+    This has obvious performance advantages since the performance is completely decoupled from the data size.
+    
+    
+    
+\end{frame}
+\subsection{Efficiency}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    We assume each message published is read by at least one consumer (often many), hence we strive to make consumption as cheap as possible.
+    
+    \vspace{2ex}
+    Once poor disk access patterns have been eliminated, there are two common causes of inefficiency in this type of system:%: too many small I/O operations, and excessive byte copying.
+    \begin{itemize}
+        \item too many small I/O operations
+        \item excessive byte copying
+    \end{itemize}
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    The small I/O problem happens both between the client and the server and in the server's own persistent operations.
+    
+    \vspace{2ex}
+    To avoid this, our protocol is built around a "message set" abstraction that naturally groups messages together. 
+    
+   
+    %This allows network requests to group messages together and amortize the overhead of the network roundtrip rather than sending a single message at a time. 
+    \vspace{2ex}
+    The server in turn appends chunks of messages to its log in one go, and the consumer fetches large linear chunks at a time.
+    
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    This simple optimization produces orders of magnitude speed up. 
+    
+    \vspace{2ex}
+    Batching leads to larger network packets, larger sequential disk operations, contiguous memory blocks, and so on.
+    
+    \vspace{2ex}
+    All of which allows Kafka to turn a bursty stream of random message writes into linear writes that flow to the consumers.
+    
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    The other inefficiency is in byte copying.
+    
+    \vspace{2ex}
+    To avoid this we employ a standardized binary message format that is shared by the producer, the broker, and the consumer,so data chunks can be transferred without modification between them.
+    
+     \vspace{2ex}
+     
+     The message log maintained by the broker is itself just a directory of files, each populated by a sequence of message sets that have been written to disk in the same format used by the producer and consumer. 
+    
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+   
+    \vspace{2ex}
+    Maintaining this common format allows optimization of the most important operation: network transfer of persistent log chunks. 
+    
+    \vspace{2ex}
+    Modern unix operating systems offer a highly optimized code path for transferring data out of pagecache to a socket; in Linux this is done with the sendfile system call.
+    
+     \vspace{2ex}
+    The Java class libraries support zero copy on Linux and UNIX systems through  java.nio.channels.FileChannel.transferTo(). 
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    To understand the impact of sendfile, it is important to understand the common data path for transfer of data from file to socket:
+    \begin{enumerate}
+        \item The operating system reads data from the disk into pagecache in kernel space
+        \item The application reads the data from kernel space into a user-space buffer
+        \item The application writes the data back into kernel space into a socket buffer
+        \item The operating system copies the data from the socket buffer to the NIC buffer where it is sent over the network
+    \end{enumerate}
+
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{image/0201}
+        %\caption{}
+        \label{fig:0201}
+    \end{figure}
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    This is clearly inefficient, there are four copies and two system calls. 
+    
+    \vspace{2ex}
+    Using sendfile, this re-copying is avoided by allowing the OS to send the data from pagecache to the network directly. 
+    
+    \vspace{2ex}
+    So in this optimized path, only the final copy to the NIC buffer is needed.
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{image/0202}
+        %\caption{}
+        \label{fig:0202}
+    \end{figure}
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    Using the zero-copy optimization above, data is copied into pagecache exactly once and reused on each consumption. % instead of being stored in memory and copied out to user-space every time it is read. 
+    
+    \vspace{2ex}
+    This allows messages to be consumed at a rate that approaches the limit of the network connection.
+    
+    \vspace{2ex}
+    This combination of pagecache and sendfile means that on a Kafka cluster 
+    %where the consumers are mostly caught up 
+    you will see no read activity on the disks whatsoever as they will be serving data entirely from cache.
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    In some cases the bottleneck is actually not CPU or disk but network bandwidth.
+    
+    \vspace{2ex}
+    Efficient compression requires compressing multiple messages together rather than compressing each message individually.
+    
+    \vspace{2ex}
+    Kafka supports this with an efficient batching format. 
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    A batch of messages can be clumped together compressed and sent to the server in this form. 
+    
+    \vspace{2ex}
+    This batch of messages will be written in compressed form and will remain compressed in the log and will only be decompressed by the consumer.
+    
+    \vspace{2ex}
+    Kafka supports GZIP, Snappy, LZ4 and ZStandard compression protocols.
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    
+    
+\end{frame}
+\subsection{The Producer}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    The producer sends data directly to the broker that is the leader for the partition without any intervening routing tier. 
+    
+    \vspace{2ex}
+    To help the producer do this all Kafka nodes can answer a request for metadata 
+    %about which servers are alive and where the leaders for the partitions of a topic are 
+    at any given time to allow the producer to appropriately direct its requests.
+    
+     \vspace{2ex}
+    The client controls which partition it publishes messages to.
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    Batching is one of the big drivers of efficiency, and to enable batching the Kafka producer will attempt to accumulate data in memory and to send out larger batches in a single request. 
+    
+    \vspace{2ex}
+    The batching can be configured to accumulate no more than a fixed number of messages and to wait no longer than some fixed latency bound (say 64k or 10 ms). 
+    
+    %This allows the accumulation of more bytes to send, and few larger I/O operations on the servers. 
+    \vspace{2ex}
+    This buffering is configurable and gives a mechanism to trade off a small amount of additional latency for better throughput.
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{image/0203}
+        %\caption{}
+        \label{fig:0203}
+    \end{figure}
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    	\begin{center}
+        ProducerRecord(Main Thread) \\
+        $\Downarrow$ \\
+        ProducerBatch (Sender Thread) \\
+        $\Downarrow$ \\
+        <Partition, Deque<ProducerBatch>{}>(Sender Thread) \\
+        $\Downarrow$ \\
+        <Node, List<ProducerBatch>{}>(Sender Thread) \\
+        $\Downarrow$ \\
+        <Node, Request>(Sender Thread) \\
+        {\color{red}$\Downarrow$} \\
+        Broker(page cache) \\
+        $\Downarrow$ \\
+        Broker(log segment)
+    \end{center}
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    Kafka provides both an asynchronous send method to send a record to a topic.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{image/0204}
+        %\caption{}
+        \label{fig:0204}
+    \end{figure}
+    
+    
+    \begin{itemize}
+        \item synchronous
+        \begin{itemize}
+            \item block
+            \item Future<RecordMetadata>.get()
+        \end{itemize}
+        \item asynchronous
+        \begin{itemize}
+            \item unblock
+            \item the callback interface
+        \end{itemize}
+    \end{itemize}
+
+
+
+
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    
+    
+    
+\end{frame}
+
+\section{Implementation}
+\begin{frame}[plain,t]{Implementation} %也可以使用\frametitle{节的名字}效果一样
+    %\structure{} \\
+    \vspace{2ex}
+    
+    
+    
+\end{frame}
+
+
+
+
+%%=================================================================================================
+\begin{frame}[plain]
+    \huge
+    \vfill
+    \centerline{ \structure{Questions and Answers?} }
+    \vfill
+    
+\end{frame}
+\begin{frame}[plain]
+    \huge
+    \vfill
+    \centerline{ \structure{Questions and Answers?} }
+    \vfill
+    \Huge
+    \centerline{\alert{Thank You!} }
+    \vfill
+\end{frame}
+
+%**********************************************************************************************
+%                  上面就是正文，自己的内容
+%        下面是标准的参考文献配置
+%**********************************************************************************************
+\begin{frame}[plain, t, allowframebreaks]{References}
+    %  allowframebreaks，这个关键字可以使得参考文献自动断页，免得手动
+    %  plain格式使得一帧的最上面是白色的，没有plain，会有色彩，可以试试
+    %  t 使得正文不再是默认居中，而是在top，应该加上t，比较好看。
+    \bibliographystyle{alpha}         %文献的格式apalike是[1],alpha是[Lam94]
+    %\beamertemplatetextbibitems        %调整文献样式
+    %\scriptsize                        %文献多时调整字体大小
+    %\bibliography{math}                 %自己的文献
+\end{frame}  
+\end{document} 
+%**********************************************************************************************
+%        上面是标准的参考文献配置
+%   参考文献的主题选择apalike，见《LaTeX入门》作者：刘海洋P423页（6-1-13）说明
+%   apalike文献格式，按照美国心理协会（APA）的格式，提供基本的作者年代引用方式
+%   避免完全不直观的数学编号可能造成的问题。这是因为beamer的文献格式比较特殊造成的
+%  实例如下:
+%\beamertemplatetextbibitems %该指令可使参考文献采用文字而不是图标的标注
+%\begin{frame}[plain, t, allowframebreaks]{References}
+%	\scriptsize
+%	\bibliographystyle{apalike}
+%	\bibliography{ZhangXiao-Smoothed_Analysis_of_Tensor_Decompositions} %文献命名规范，不要怕长
+%\end{frame}
+
+%**********************************************************************************************
+%   学习LaTeX好的资料，有《LaTeX入门》《A Guide to LaTeX 4th Edition》 新浪微盘可下载  
+%   《一份不太简短的LATEX介绍 》，网址 CTAN:/tex-archive/info/lshort 可下载  ，有中英文，每年更新
+%   tex.stackexchange.com，一个美国的专业TeX问答网站，这个网站更灵活，受益匪浅
+%   www.ctan.org            usepackage资料参考
+%   www.texample.net       不常用，但是聚集了的专业绘图的LaTeX代码，比如画一个probability tree，
+%   遇到问题，先百度Google，90%问题可解决，不行再上知乎提问，刘海洋老师，LaTeX专家，
+%   可在 tex.stackexchange.com  同时提问，最基础的是读读上面的两本书，学会自己看文档
+%   论文《Type setting mathematics for science and technology according to ISO 31/XI》
+%   介绍排版中数学字体的选择
+%***********************************************************************************************

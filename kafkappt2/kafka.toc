@@ -4,11 +4,10 @@
 \beamer@subsectionintoc {2}{1}{Persistence}{10}{0}{2}
 \beamer@subsectionintoc {2}{2}{Efficiency}{11}{0}{2}
 \beamer@subsectionintoc {2}{3}{The Producer}{33}{0}{2}
-\beamer@subsectionintoc {2}{4}{The Consumer}{38}{0}{2}
-\beamer@subsectionintoc {2}{5}{Message Delivery Semantics}{43}{0}{2}
-\beamer@subsectionintoc {2}{6}{Replication}{46}{0}{2}
-\beamer@sectionintoc {3}{Implementation}{51}{0}{3}
-\beamer@subsectionintoc {3}{1}{Network Layer}{52}{0}{3}
-\beamer@subsectionintoc {3}{2}{Messages}{53}{0}{3}
-\beamer@subsectionintoc {3}{3}{Log}{56}{0}{3}
-\beamer@subsectionintoc {3}{4}{Consumer Offset Tracking}{61}{0}{3}
+\beamer@subsectionintoc {2}{4}{The Consumer}{40}{0}{2}
+\beamer@subsectionintoc {2}{5}{Message Delivery Semantics}{49}{0}{2}
+\beamer@subsectionintoc {2}{6}{Replication}{52}{0}{2}
+\beamer@sectionintoc {3}{Implementation}{57}{0}{3}
+\beamer@subsectionintoc {3}{1}{Network Layer}{58}{0}{3}
+\beamer@subsectionintoc {3}{2}{Messages}{59}{0}{3}
+\beamer@subsectionintoc {3}{3}{Log}{62}{0}{3}

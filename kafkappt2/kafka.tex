@@ -608,6 +608,8 @@ The killer when working with a disk? Access time. Today, a page fault stalls the
     \vspace{2ex}
     Kafka provides an asynchronous send method to send a record to a topic.
     
+    
+    \vspace{1ex}
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{image/0204}
@@ -630,12 +632,38 @@ The killer when working with a disk? Access time. Today, a page fault stalls the
     \end{itemize}
 
 
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
 
-
+  
+    If records are sent faster than they can be transmitted to the server then this buffer space will be exhausted. 
+    
+     \vspace{2ex}
+    When the buffer space is exhausted additional send calls will block. 
+    
+     \vspace{2ex}
+    The threshold for time to block is determined by max.block.ms after which it throws a TimeoutException.
+    
     
     
 \end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Producer} \\
+    \vspace{2ex}
+    
+    The producer is thread safe and sharing a single producer instance across threads will generally be faster than having multiple instances.
+    
+    \vspace{2ex}
+   From Kafka 0.11, the KafkaProducer supports two additional modes: 
+   \begin{itemize}
+       \item  the idempotent producer
+       \item the transactional producer
+   \end{itemize}
 
+    
+\end{frame}
 \subsection{The Consumer}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{The Consumer} \\
@@ -645,16 +673,47 @@ The killer when working with a disk? Access time. Today, a page fault stalls the
     \vspace{2ex}
     The consumer specifies its offset in the log with each request and receives back a chunk of log beginning from that position. 
     
-    \vspace{2ex}
-    The consumer thus has significant control over this position and can rewind it to re-consume data if need be.
+     \vspace{2ex}
+   %The consumer thus has significant control over this position and can rewind it to re-consume data if need be.
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{image/0217}
+        %\caption{}
+        \label{fig:0217}
+    \end{figure}
     
+    
+\end{frame}
+
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+     \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{image/0220}
+        %\caption{}
+        \label{fig:0220}
+    \end{figure}
     
     
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{The Consumer} \\
     \vspace{2ex}
-    Our topic is divided into a set of totally ordered partitions, each of which is consumed by exactly one consumer within each subscribing consumer group at any given time
+    On each poll, consumer will try to use the last consumed offset as the starting offset and fetch sequentially. 
+    
+     \vspace{2ex}
+    The last consumed offset can be manually set through seek(TopicPartition, long) or automatically set as the last committed offset for the subscribed list of partitions.
+    
+     \vspace{2ex}
+    This method returns immediately if there are records available. Otherwise, it will await the passed timeout. If the timeout expires, an empty record set will be returned.
+    
+\end{frame}
+
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+    Our topic is divided into a set of totally ordered partitions, each of which is consumed by exactly one consumer within each subscribing consumer group at any given time。
     
     \begin{figure}
         \centering
@@ -719,6 +778,40 @@ The killer when working with a disk? Access time. Today, a page fault stalls the
     
     
 \end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+   A Group Coordinator is a GroupMetadataManager and an Offset Manager,  at the same time.
+   
+   \begin{figure}
+       \centering
+       \includegraphics[width=0.7\linewidth]{image/0306}
+       %\caption{}
+       \label{fig:0306}
+   \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+   When the group coordinator receives an OffsetCommitRequest, it appends the request to a special compacted Kafka topic named \_\_consumer\_offsets.
+   
+   \vspace{2ex}
+   It’s saved as binary data, each message in this topic has a key (group, topic, partition number) and a value.
+   
+    \vspace{2ex}
+   
+   \begin{figure}
+       \centering
+       \includegraphics[width=1\linewidth]{image/0219}
+       %\caption{}
+       \label{fig:0219}
+   \end{figure}
+    
+\end{frame}
+
 
 \subsection{Message Delivery Semantics}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
@@ -760,12 +853,12 @@ It's worth noting that this breaks down into two problems: the durability guaran
     
     \vspace{2ex}
     \begin{itemize}
-        \item at least once(read, update, process)
-        \item at most once(read, process, update)
+        \item at least once (poll, update, process)
+        \item at most once (poll, process, update)
         \item exactly once
         \begin{itemize}
-            \item to topic(producer transactional capabilities)
-            \item to external system(store offset in the same place as its output)
+            \item to topic (producer transactional capabilities)
+            \item to external system (store offset in the same place as its output)
             
         \end{itemize}
     \end{itemize}
@@ -819,7 +912,9 @@ It's worth noting that this breaks down into two problems: the durability guaran
     We refer to nodes satisfying these two conditions as being "in sync" to avoid the vagueness of "alive" or "failed". 
     
      \vspace{2ex}
-    The leader keeps track of the set of "in sync" nodes.
+    The guarantee that Kafka offers is that a committed message will not be lost, as long as there is at least one in sync replica alive, at all times.
+    %The leader keeps track of the set of "in sync" nodes. 
+    
     
     \begin{figure}
         \centering
@@ -828,7 +923,6 @@ It's worth noting that this breaks down into two problems: the durability guaran
         \label{fig:0211}
     \end{figure}
     
-    The guarantee that Kafka offers is that a committed message will not be lost, as long as there is at least one in sync replica alive, at all times.
     
 
     
@@ -1003,33 +1097,7 @@ It's worth noting that this breaks down into two problems: the durability guaran
     
     
 \end{frame}
-\subsection{Consumer Offset Tracking}
-\begin{frame}[plain,t]{Implementation} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Consumer Offset Tracking} \\
-    \vspace{2ex}
-    Kafka consumer tracks the maximum offset it has consumed in each partition and has the capability to commit offsets .
-    
-    \vspace{2ex}
-    Offset commits can be done automatically or manually by consumer instance.
-    
-    
-    \vspace{2ex}
-    When the group coordinator receives an OffsetCommitRequest, it appends the request to a special compacted Kafka topic named \_\_consumer\_offsets.
-    
-    
-\end{frame}
-\begin{frame}[plain,t]{Implementation} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Consumer Offset Tracking} \\
-    \vspace{2ex}
-   \begin{figure}
-       \centering
-       \includegraphics[width=0.7\linewidth]{image/0306}
-       %\caption{}
-       \label{fig:0306}
-   \end{figure}
-   
-    
-\end{frame}
+
 
 %%=================================================================================================
 \begin{frame}[plain]

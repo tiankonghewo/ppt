@@ -1035,9 +1035,9 @@ It's worth noting that this breaks down into two problems: the durability guaran
      Each log file is named with the offset of the first message it contains.
     \begin{figure}
         \centering
-        \includegraphics[width=0.9\linewidth]{image/0305}
+        \includegraphics[width=0.8\linewidth]{image/0307}
         %\caption{}
-        \label{fig:0305}
+        \label{fig:0307}
     \end{figure}
     
     
@@ -1059,44 +1059,23 @@ It's worth noting that this breaks down into two problems: the durability guaran
     
     
 \end{frame}
+
 \begin{frame}[plain,t]{Implementation} %也可以使用\frametitle{节的名字}效果一样
     \structure{Log} \\
     \vspace{2ex}
-    The log allows serial appends which always go to the last file. 
-    
-    \vspace{2ex}
-    This file is rolled over to a fresh file when it reaches a configurable size M or a number of seconds S.
-    
-    \vspace{2ex}
-    This gives a durability guarantee of losing at most M messages or S seconds of data in the event of a system crash.
-    
-    
-\end{frame}
-\begin{frame}[plain,t]{Implementation} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Log} \\
-    \vspace{2ex}
-    Reads are done by giving the 64-bit logical offset of a message and an S-byte max chunk size
+    Reads are done by giving the 64-bit logical offset of a message and an S-byte max chunk size.
     
     \vspace{2ex}
     S is intended to be larger than any single message, but in the event of an abnormally large message, the read can be retried multiple times, each time doubling the buffer size, until the message is read successfully.
     
     \vspace{2ex}
-    It is likely that the read buffer ends with a partial message, this is easily detected by the size delimiting.
-    
+    %It is likely that the read buffer ends with a partial message, this is easily detected by the size delimiting.
+    The actual process of reading from an offset requires first locating the log segment file, calculating the file-specific offset from the global offset value, and then reading from that file offset. 
     
     
     
 \end{frame}
-\begin{frame}[plain,t]{Implementation} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Log} \\
-    \vspace{2ex}
-   The actual process of reading from an offset requires first locating the log segment file, calculating the file-specific offset from the global offset value, and then reading from that file offset. 
-   
-   \vspace{2ex}
-   The search is done as a simple binary search variation against an in-memory range maintained for each file.
-    
-    
-\end{frame}
+
 
 
 %%=================================================================================================

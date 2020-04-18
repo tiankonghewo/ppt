@@ -135,6 +135,18 @@
     \end{figure}
     
     
+ 
+\end{frame}
+\begin{frame}[plain,t]{Introduction} %也可以使用\frametitle{节的名字}效果一样
+    %\structure{} \\
+    \vspace{2ex}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{image/0105}
+        %\caption{}
+        \label{fig:0105}
+    \end{figure}
+    
     
     
 \end{frame}
@@ -173,14 +185,70 @@
     \vspace{2ex}
     Kafka relies heavily on the filesystem for storing and caching messages. 
     
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{image/0212}
+        %\caption{}
+        \label{fig:0212}
+    \end{figure}
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
     \vspace{2ex}
-    As a result the performance of linear writes on a JBOD configuration with six 7200rpm SATA RAID-5 array is about 600MB/sec but the performance of random writes is only about 100k/sec—a difference of over 6000X. 
+   As a result the performance of linear writes on a JBOD configuration with six 7200rpm SATA RAID-5 array is about 600MB/sec but the performance of random writes is only about 100k/sec—a difference of over 6000X. 
+   
+   \vspace{2ex}
+   \begin{figure}
+       \centering
+       \includegraphics[width=0.9\linewidth]{image/0213}
+       %\caption{}
+       \label{fig:0213}
+   \end{figure}
+   
+   
+   %\vspace{2ex}
+   %To compensate for this performance divergence, modern operating systems have become increasingly aggressive in their use of main memory for disk caching.
+   
     
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
     \vspace{2ex}
-    To compensate for this performance divergence, modern operating systems have become increasingly aggressive in their use of main memory for disk caching.
+
+To address the gap between memory and disk access times, we will prefetch data from the Personal Terabyte magnetic disk into main memory.
+
+    \vspace{-2ex}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\linewidth]{image/0214}
+        %\caption{}
+        \label{fig:0214}
+    \end{figure}
     
-    %
     
+
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Persistence} \\
+    \vspace{2ex}
+   
+   
+   
+   This type of prefetching will be essential to achieving high performance on the Personal Terabyte.
+   %To avoid an I/O bottleneck, we must prefetch disk data into memory so that it is available to the processor without incurring a page fault. 
+   
+   \vspace{2ex}
+   Today, a page fault stalls the CPU for millions of cycles; as clock speeds increase, this penalty will increase to tens of millions of cycles.
+   
+   \vspace{2ex}
+  We are performing a prefetching study that predicts future accesses based on past access patterns and then performs a cost-benefit analysis to determine whether the benefit of prefetching a block exceeds its cost.
+   
     
     
 \end{frame}

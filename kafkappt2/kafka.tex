@@ -195,8 +195,9 @@
     
     
 \end{frame}
+\subsection{Efficiency}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
    As a result the performance of linear writes on a JBOD configuration with six 7200rpm SATA RAID-5 array is about 600MB/sec but the performance of random writes is only about 100k/sec—a difference of over 6000X. 
    
@@ -216,61 +217,98 @@
     
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
+The killer when working with a disk? Access time. Today, a page fault stalls the CPU for millions of cycles; as clock speeds increase, this penalty will increase to tens of millions of cycles.
 
-To address the gap between memory and disk access times, we will prefetch data from the Personal Terabyte magnetic disk into main memory.
+ \vspace{2ex}
+ This is why caching data in memory({\color{red}page cache}) is so important for performance – disk is 5 orders of magnitude slower than RAM.
 
-    \vspace{-2ex}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.75\linewidth]{image/0214}
-        %\caption{}
-        \label{fig:0214}
-    \end{figure}
-    
+%To address the gap, %between memory and disk access times
+ %we will prefetch data from the Personal Terabyte magnetic disk into {\color{red}page cache}.
+
+   \vspace{2ex}
+     The modern OS predicts future accesses based on past access patterns and then performs a cost-benefit analysis to determine whether the benefit of prefetching a block exceeds its cost.
     
 
     
     
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
    
+    To illustrate the page cache, I'll conjure a Linux program named render, which opens file scene.dat and reads it 512 bytes at a time, storing the file contents into a heap-allocated block. 
+    
+   \begin{figure}
+       \centering
+       \includegraphics[width=0.7\linewidth]{image/0214}
+       %\caption{}
+       \label{fig:0214}
+   \end{figure}
+
+   %the difference in latency between RAM and a hard drive is enormous.
    
-   
-   This type of prefetching will be essential to achieving high performance on the Personal Terabyte.
+   %This type of prefetching will be essential to achieving high performance on the Personal Terabyte.
    %To avoid an I/O bottleneck, we must prefetch disk data into memory so that it is available to the processor without incurring a page fault. 
    
-   \vspace{2ex}
-   Today, a page fault stalls the CPU for millions of cycles; as clock speeds increase, this penalty will increase to tens of millions of cycles.
    
-   \vspace{2ex}
-  We are performing a prefetching study that predicts future accesses based on past access patterns and then performs a cost-benefit analysis to determine whether the benefit of prefetching a block exceeds its cost.
+  %We are performing a prefetching study that 
+ 
    
     
     
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
-    A modern OS will happily divert all free memory to disk caching with little performance penalty when the memory is reclaimed.
+    The first read goes like this:
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{image/0215}
+        %\caption{}
+        \label{fig:0215}
+    \end{figure}
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    When you use {\color{red}memory-mapped files}, the kernel maps your program's virtual pages directly onto the page cache.
     
     \vspace{2ex}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{image/0216}
+        %\caption{}
+        \label{fig:0216}
+    \end{figure}
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{Efficiency} \\
+    \vspace{2ex}
+    
     All disk reads and writes will go through this unified cache. 
     
     \vspace{2ex}
-    A modern operating system provides read-ahead and write-behind techniques that prefetch data in large block multiples and group smaller logical writes into large physical writes.
+    So long as there's enough free physical memory, the cache should be kept full. It is therefore not dependent on a particular process, but rather it's a system-wide resource. 
+    
+    %A modern operating system provides read-ahead and write-behind techniques that prefetch data in large block multiples and group smaller logical writes into large physical writes.
+    
+    \vspace{2ex}
+    A modern OS will happily divert all free memory to disk caching with little performance penalty when the memory is reclaimed.
+    
     
     
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
     Furthermore, kafka are building on top of the JVM, and anyone who has spent any time with Java memory usage knows two things:
+    \vspace{2ex}
     \begin{itemize}
-        \item The memory overhead of objects is very high, often doubling the size of the data stored (or worse).
+        \item The memory overhead of objects is very high.
         \item  Java garbage collection becomes increasingly fiddly and slow as the in-heap data increases.
     \end{itemize}
     
@@ -280,34 +318,29 @@ To address the gap between memory and disk access times, we will prefetch data f
     
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
-    As a result of these factors using the filesystem and relying on pagecache is superior to maintaining an in-memory cache or other structure
+    As a result of these factors using the filesystem and relying on pagecache is superior to maintaining an in-memory cache or other structure.
     
     \vspace{2ex}
     Doing so will result in a cache of up to 28-30GB on a 32GB machine without GC penalties.
     
     \vspace{2ex}
-    Furthermore, this cache will stay warm even if the service is restarted, whereas the in-process cache will need to be rebuilt in memory
-    
-    
-    
-\end{frame}
-\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
-    \vspace{2ex}
-    This suggests a design which is very simple: rather than maintain as much as possible in-memory and flush it all out to the filesystem in a panic when we run out of space, we invert that. 
-    
-     \vspace{2ex}
+   % Furthermore, this cache will stay warm even if the service is restarted, whereas the in-process cache will need to be rebuilt in memory
     All data is immediately written to a persistent log on the filesystem without necessarily flushing to disk.
     
-     \vspace{2ex}
-     In effect this just means that it is transferred into the kernel's pagecache.
+    %This suggests a design which is very simple: rather than maintain as much as possible in-memory and flush it all out to the filesystem in a panic when we run out of space, we invert that. 
     
+    \vspace{2ex}
+    %All data is immediately written to a persistent log on the filesystem without necessarily flushing to disk.
+    
+    \vspace{2ex}
+    %In effect this just means that it is transferred into the kernel's pagecache.
     
 \end{frame}
+
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
     The persistent data structure used in messaging systems are often a per-consumer queue with an associated BTree or other general-purpose random access data structures to maintain metadata about messages.
     
@@ -321,7 +354,7 @@ To address the gap between memory and disk access times, we will prefetch data f
     
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{Persistence} \\
+    \structure{Efficiency} \\
     \vspace{2ex}
     Intuitively a persistent queue could be built on simple reads and appends to files as is commonly the case with logging solutions. 
     
@@ -334,7 +367,7 @@ To address the gap between memory and disk access times, we will prefetch data f
     
     
 \end{frame}
-\subsection{Efficiency}
+
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{Efficiency} \\
     \vspace{2ex}
@@ -423,11 +456,11 @@ To address the gap between memory and disk access times, we will prefetch data f
         \item The application writes the data back into kernel space into a socket buffer
         \item The operating system copies the data from the socket buffer to the NIC buffer where it is sent over the network
     \end{enumerate}
-
+    
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{Efficiency} \\
-    \vspace{2ex}
+    \vspace{-1ex}
     \begin{figure}
         \centering
         \includegraphics[width=0.7\linewidth]{image/0201}
@@ -438,6 +471,7 @@ To address the gap between memory and disk access times, we will prefetch data f
     
     
 \end{frame}
+
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{Efficiency} \\
     \vspace{2ex}
@@ -452,7 +486,7 @@ To address the gap between memory and disk access times, we will prefetch data f
 \end{frame}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{Efficiency} \\
-    \vspace{2ex}
+    \vspace{-1ex}
     \begin{figure}
         \centering
         \includegraphics[width=0.7\linewidth]{image/0202}
@@ -462,6 +496,8 @@ To address the gap between memory and disk access times, we will prefetch data f
     
     
 \end{frame}
+
+
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{Efficiency} \\
     \vspace{2ex}

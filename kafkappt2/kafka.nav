@@ -108,59 +108,67 @@
 \headcommand {\beamer@framepages {47}{47}}
 \headcommand {\slideentry {2}{4}{9}{48/48}{The Consumer}{0}}
 \headcommand {\beamer@framepages {48}{48}}
-\headcommand {\beamer@subsectionpages {40}{48}}
-\headcommand {\beamer@subsectionentry {0}{2}{5}{49}{Message Delivery Semantics}}
-\headcommand {\slideentry {2}{5}{1}{49/49}{Message Delivery Semantics}{0}}
+\headcommand {\slideentry {2}{4}{10}{49/49}{The Consumer}{0}}
 \headcommand {\beamer@framepages {49}{49}}
-\headcommand {\slideentry {2}{5}{2}{50/50}{Message Delivery Semantics}{0}}
+\headcommand {\slideentry {2}{4}{11}{50/50}{The Consumer}{0}}
 \headcommand {\beamer@framepages {50}{50}}
-\headcommand {\slideentry {2}{5}{3}{51/51}{Message Delivery Semantics}{0}}
+\headcommand {\slideentry {2}{4}{12}{51/51}{The Consumer}{0}}
 \headcommand {\beamer@framepages {51}{51}}
-\headcommand {\beamer@subsectionpages {49}{51}}
-\headcommand {\beamer@subsectionentry {0}{2}{6}{52}{Replication}}
-\headcommand {\slideentry {2}{6}{1}{52/52}{Replication}{0}}
+\headcommand {\slideentry {2}{4}{13}{52/52}{The Consumer}{0}}
 \headcommand {\beamer@framepages {52}{52}}
-\headcommand {\slideentry {2}{6}{2}{53/53}{Replication}{0}}
+\headcommand {\beamer@subsectionpages {40}{52}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{53}{Message Delivery Semantics}}
+\headcommand {\slideentry {2}{5}{1}{53/53}{Message Delivery Semantics}{0}}
 \headcommand {\beamer@framepages {53}{53}}
-\headcommand {\slideentry {2}{6}{3}{54/54}{Replication}{0}}
+\headcommand {\slideentry {2}{5}{2}{54/54}{Message Delivery Semantics}{0}}
 \headcommand {\beamer@framepages {54}{54}}
-\headcommand {\slideentry {2}{6}{4}{55/55}{Replication}{0}}
+\headcommand {\slideentry {2}{5}{3}{55/55}{Message Delivery Semantics}{0}}
 \headcommand {\beamer@framepages {55}{55}}
-\headcommand {\slideentry {2}{6}{5}{56/56}{Replication}{0}}
+\headcommand {\beamer@subsectionpages {53}{55}}
+\headcommand {\beamer@subsectionentry {0}{2}{6}{56}{Replication}}
+\headcommand {\slideentry {2}{6}{1}{56/56}{Replication}{0}}
 \headcommand {\beamer@framepages {56}{56}}
-\headcommand {\beamer@sectionpages {9}{56}}
-\headcommand {\beamer@subsectionpages {52}{56}}
-\headcommand {\sectionentry {3}{Implementation}{57}{Implementation}{0}}
-\headcommand {\slideentry {3}{0}{1}{57/57}{}{0}}
+\headcommand {\slideentry {2}{6}{2}{57/57}{Replication}{0}}
 \headcommand {\beamer@framepages {57}{57}}
-\headcommand {\beamer@subsectionpages {57}{57}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{58}{Network Layer}}
-\headcommand {\slideentry {3}{1}{1}{58/58}{Network Layer}{0}}
+\headcommand {\slideentry {2}{6}{3}{58/58}{Replication}{0}}
 \headcommand {\beamer@framepages {58}{58}}
-\headcommand {\beamer@subsectionpages {58}{58}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{59}{Messages}}
-\headcommand {\slideentry {3}{2}{1}{59/59}{Messages}{0}}
+\headcommand {\slideentry {2}{6}{4}{59/59}{Replication}{0}}
 \headcommand {\beamer@framepages {59}{59}}
-\headcommand {\slideentry {3}{2}{2}{60/60}{Messages}{0}}
+\headcommand {\slideentry {2}{6}{5}{60/60}{Replication}{0}}
 \headcommand {\beamer@framepages {60}{60}}
-\headcommand {\slideentry {3}{2}{3}{61/61}{Messages}{0}}
+\headcommand {\beamer@sectionpages {9}{60}}
+\headcommand {\beamer@subsectionpages {56}{60}}
+\headcommand {\sectionentry {3}{Implementation}{61}{Implementation}{0}}
+\headcommand {\slideentry {3}{0}{1}{61/61}{}{0}}
 \headcommand {\beamer@framepages {61}{61}}
-\headcommand {\beamer@subsectionpages {59}{61}}
-\headcommand {\beamer@subsectionentry {0}{3}{3}{62}{Log}}
-\headcommand {\slideentry {3}{3}{1}{62/62}{Log}{0}}
+\headcommand {\beamer@subsectionpages {61}{61}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{62}{Network Layer}}
+\headcommand {\slideentry {3}{1}{1}{62/62}{Network Layer}{0}}
 \headcommand {\beamer@framepages {62}{62}}
-\headcommand {\slideentry {3}{3}{2}{63/63}{Log}{0}}
+\headcommand {\beamer@subsectionpages {62}{62}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{63}{Messages}}
+\headcommand {\slideentry {3}{2}{1}{63/63}{Messages}{0}}
 \headcommand {\beamer@framepages {63}{63}}
-\headcommand {\slideentry {3}{3}{3}{64/64}{Log}{0}}
+\headcommand {\slideentry {3}{2}{2}{64/64}{Messages}{0}}
 \headcommand {\beamer@framepages {64}{64}}
-\headcommand {\slideentry {3}{3}{4}{65/65}{Log}{0}}
+\headcommand {\slideentry {3}{2}{3}{65/65}{Messages}{0}}
 \headcommand {\beamer@framepages {65}{65}}
-\headcommand {\slideentry {3}{3}{5}{66/66}{Log}{0}}
+\headcommand {\beamer@subsectionpages {63}{65}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{66}{Log}}
+\headcommand {\slideentry {3}{3}{1}{66/66}{Log}{0}}
 \headcommand {\beamer@framepages {66}{66}}
-\headcommand {\slideentry {3}{3}{6}{67/67}{Log}{0}}
+\headcommand {\slideentry {3}{3}{2}{67/67}{Log}{0}}
 \headcommand {\beamer@framepages {67}{67}}
-\headcommand {\beamer@partpages {1}{67}}
-\headcommand {\beamer@subsectionpages {62}{67}}
-\headcommand {\beamer@sectionpages {57}{67}}
-\headcommand {\beamer@documentpages {67}}
-\headcommand {\gdef \inserttotalframenumber {67}}
+\headcommand {\slideentry {3}{3}{3}{68/68}{Log}{0}}
+\headcommand {\beamer@framepages {68}{68}}
+\headcommand {\slideentry {3}{3}{4}{69/69}{Log}{0}}
+\headcommand {\beamer@framepages {69}{69}}
+\headcommand {\slideentry {3}{3}{5}{70/70}{Log}{0}}
+\headcommand {\beamer@framepages {70}{70}}
+\headcommand {\slideentry {3}{3}{6}{71/71}{Log}{0}}
+\headcommand {\beamer@framepages {71}{71}}
+\headcommand {\beamer@partpages {1}{71}}
+\headcommand {\beamer@subsectionpages {66}{71}}
+\headcommand {\beamer@sectionpages {61}{71}}
+\headcommand {\beamer@documentpages {71}}
+\headcommand {\gdef \inserttotalframenumber {71}}

@@ -5,9 +5,9 @@
 \beamer@subsectionintoc {2}{2}{Efficiency}{11}{0}{2}
 \beamer@subsectionintoc {2}{3}{The Producer}{33}{0}{2}
 \beamer@subsectionintoc {2}{4}{The Consumer}{40}{0}{2}
-\beamer@subsectionintoc {2}{5}{Message Delivery Semantics}{49}{0}{2}
-\beamer@subsectionintoc {2}{6}{Replication}{52}{0}{2}
-\beamer@sectionintoc {3}{Implementation}{57}{0}{3}
-\beamer@subsectionintoc {3}{1}{Network Layer}{58}{0}{3}
-\beamer@subsectionintoc {3}{2}{Messages}{59}{0}{3}
-\beamer@subsectionintoc {3}{3}{Log}{62}{0}{3}
+\beamer@subsectionintoc {2}{5}{Message Delivery Semantics}{53}{0}{2}
+\beamer@subsectionintoc {2}{6}{Replication}{56}{0}{2}
+\beamer@sectionintoc {3}{Implementation}{61}{0}{3}
+\beamer@subsectionintoc {3}{1}{Network Layer}{62}{0}{3}
+\beamer@subsectionintoc {3}{2}{Messages}{63}{0}{3}
+\beamer@subsectionintoc {3}{3}{Log}{66}{0}{3}

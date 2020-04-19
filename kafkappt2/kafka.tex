@@ -668,13 +668,61 @@ The killer when working with a disk? Access time. Today, a page fault stalls the
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{The Consumer} \\
     \vspace{2ex}
-    The Kafka consumer works by issuing "fetch" requests to the brokers leading the partitions it wants to consume. 
+    %The Kafka consumer works by issuing "fetch" requests to the brokers leading the partitions it wants to consume. 
+    The consumer maintains TCP connections to the necessary brokers to fetch data.
     
     \vspace{2ex}
-    The consumer specifies its offset in the log with each request and receives back a chunk of log beginning from that position. 
     
+    
+    There are actually two notions of position relevant to the user of the consumer.
+    \begin{itemize}
+        \item The position of the consumer gives the offset of the next record that will be given out. 
+        \item The committed position is the last offset that has been saved securely. 
+    \end{itemize}
      \vspace{2ex}
    %The consumer thus has significant control over this position and can rewind it to re-consume data if need be.
+    
+    
+    
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+The consumer specifies its offset in the log with each request and receives back a chunk of log beginning from that position. 
+
+\vspace{2ex}
+That is, a consumer which has position 5 has consumed records with offsets 0 through 4 and will next receive the record with offset 5. 
+
+
+\vspace{2ex}
+It automatically advances every time the consumer receives data calls poll(long) and receives messages.
+
+
+
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+
+    It is the committed position that it will recover to when  the process fail and restart.
+    
+    \vspace{2ex}
+    The consumer can either automatically commit offsets periodically; or it can choose to control this committed position manually.
+    
+     \vspace{2ex}
+     The consumer application can also not use Kafka's built-in offset storage, but store offsets in a store of its own choosing. 
+    
+
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+    The primary use case for this is allowing the application to store both the offset and the results of the consumption in the same system.
+    
+    \vspace{2ex}
+    This is not always possible, but when it is it will make the consumption fully atomic and give "exactly once" semantics. 
+    
+    \vspace{2ex}
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{image/0217}
@@ -682,33 +730,8 @@ The killer when working with a disk? Access time. Today, a page fault stalls the
         \label{fig:0217}
     \end{figure}
     
-    
 \end{frame}
 
-\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{The Consumer} \\
-    \vspace{2ex}
-     \begin{figure}
-        \centering
-        \includegraphics[width=0.9\linewidth]{image/0220}
-        %\caption{}
-        \label{fig:0220}
-    \end{figure}
-    
-    
-\end{frame}
-\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
-    \structure{The Consumer} \\
-    \vspace{2ex}
-    On each poll, consumer will try to use the last consumed offset as the starting offset and fetch sequentially. 
-    
-     \vspace{2ex}
-    The last consumed offset can be manually set through seek(TopicPartition, long) or automatically set as the last committed offset for the subscribed list of partitions.
-    
-     \vspace{2ex}
-    This method returns immediately if there are records available. Otherwise, it will await the passed timeout. If the timeout expires, an empty record set will be returned.
-    
-\end{frame}
 
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{The Consumer} \\
@@ -811,8 +834,54 @@ The killer when working with a disk? Access time. Today, a page fault stalls the
    \end{figure}
     
 \end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+        \structure{The Consumer} \\
+        \vspace{2ex}
+        The poll API is designed to ensure consumer liveness. To stay in the group, you have to prove you are still alive by calling poll.
+        
+        \vspace{2ex}
+        Underneath the covers, the poll API sends periodic heartbeats to the server; when you stop calling poll, then no heartbeats will be sent.
+        
+         \vspace{2ex}
+        This is designed to prevent situations where the consumer has failed, yet continues to hold onto the partitions it was assigned. 
+        
+        
+        
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+    
+    Note that the consumer is single-threaded, so periodic heartbeats can only be sent when poll(long) is called. 
+    
+    %On each poll, consumer will try to use the last consumed offset as the starting offset and fetch sequentially. 
+    \vspace{2ex}
+    
+    The implication of this design is that message processing time in the poll loop must be bounded so that heartbeats can be sent before expiration of the session timeout.
+    %The last consumed offset can be manually set through seek(TopicPartition, long) or automatically set as the last committed offset for the subscribed list of partitions.
+    
+    \vspace{2ex}
+    The consumer provides two configuration settings to control this behavior:
+    \begin{itemize}
+         \item session.timeout.ms
+        \item max.poll.records
+    \end{itemize}
 
 
+ 
+\end{frame}
+\begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
+    \structure{The Consumer} \\
+    \vspace{2ex}
+For use cases where message processing time varies unpredictably, neither of these options may be viable. 
+
+\vspace{2ex}
+The recommended way to handle these cases is to move message processing to another thread, which allows the consumer to continue sending heartbeats while the processor is still working. 
+
+\vspace{2ex}
+you will generally need to pause(Collection) the partition so that no new records are received from poll until after thread has finished handling those previously returned.
+
+\end{frame}
 \subsection{Message Delivery Semantics}
 \begin{frame}[plain,t]{Design} %也可以使用\frametitle{节的名字}效果一样
     \structure{Message Delivery Semantics} \\
@@ -1035,9 +1104,9 @@ It's worth noting that this breaks down into two problems: the durability guaran
      Each log file is named with the offset of the first message it contains.
     \begin{figure}
         \centering
-        \includegraphics[width=0.8\linewidth]{image/0307}
+        \includegraphics[width=0.9\linewidth]{image/0220}
         %\caption{}
-        \label{fig:0307}
+        \label{fig:0220}
     \end{figure}
     
     
@@ -1047,7 +1116,8 @@ It's worth noting that this breaks down into two problems: the durability guaran
 \begin{frame}[plain,t]{Implementation} %也可以使用\frametitle{节的名字}效果一样
     \structure{Log} \\
     \vspace{2ex}
-  The format of the log files is a sequence of "log entries""; each log entry is a 4 byte integer N storing the message length.
+  The format of the log files is a sequence of "log entries""; 
+  each log entry is a 4 byte integer N storing the message length which is followed by the N message bytes. 
   
   \vspace{2ex}
   Each message is uniquely identified by a 64-bit integer offset giving the byte position of the start of this message in the stream of all messages ever sent to that topic on that partition.
